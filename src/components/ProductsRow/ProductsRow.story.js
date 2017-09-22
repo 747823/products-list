@@ -1,7 +1,7 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
 import { action } from '@storybook/addon-actions'
-
+import autobind from 'react-autobind'
 import ProductsRow from './ProductsRow.js'
 
 const rowChangedAction = action('Row Changed')
@@ -10,10 +10,8 @@ class InteractiveProductsRow extends React.Component {
   constructor (props) {
     super(props)
 
-    /**
-     * Assign props over default state
-     */
     this.state = Object.assign({
+      isValid: true,
       selected: false,
       imageUrl: '',
       description: '',
@@ -22,7 +20,7 @@ class InteractiveProductsRow extends React.Component {
       inventory: 0
     }, props)
 
-    this.changed = this.changed.bind(this)
+    autobind(this)
   }
 
   changed (state) {
@@ -42,14 +40,41 @@ class InteractiveProductsRow extends React.Component {
 
 storiesOf('ProductsRow', module)
   .add('Unselected', () =>
-    <ProductsRow />
+    <ProductsRow
+      description='Rad Pants'
+      imageUrl='https://www.burnoutitaly.com/media/catalog/product/cache/2/small_image/295x/4d958f563004f3a33e053f5fc7cf6f98/r/e/xrevit-airwave-2-donna-0011.jpg.pagespeed.ic.yAKleTjS5Y.jpg'
+      type={'Physical'}
+      price={49.99}
+      inventory={150}
+    />
   )
   .add('Selected', () =>
     <ProductsRow
+      description='Rad Pants'
+      imageUrl='https://www.burnoutitaly.com/media/catalog/product/cache/2/small_image/295x/4d958f563004f3a33e053f5fc7cf6f98/r/e/xrevit-airwave-2-donna-0011.jpg.pagespeed.ic.yAKleTjS5Y.jpg'
+      type={'Physical'}
+      price={49.99}
+      inventory={150}
       selected
     />
   )
-  .add('Interactive', () =>
-    <InteractiveProductsRow />
+  .add('Selected Invalid', () =>
+    <ProductsRow
+      description=''
+      imageUrl='https://www.burnoutitaly.com/media/catalog/product/cache/2/small_image/295x/4d958f563004f3a33e053f5fc7cf6f98/r/e/xrevit-airwave-2-donna-0011.jpg.pagespeed.ic.yAKleTjS5Y.jpg'
+      type={'Physical'}
+      price={49.99}
+      inventory={150}
+      isValid={false}
+      validationErrors={[
+        'Description can\'t be empty'
+      ]}
+      selected
+    />
+  )
+  .add('Interactive (no validation)', () =>
+    <InteractiveProductsRow 
+      imageUrl='https://www.burnoutitaly.com/media/catalog/product/cache/2/small_image/295x/4d958f563004f3a33e053f5fc7cf6f98/r/e/xrevit-airwave-2-donna-0011.jpg.pagespeed.ic.yAKleTjS5Y.jpg'
+    />
   )
 

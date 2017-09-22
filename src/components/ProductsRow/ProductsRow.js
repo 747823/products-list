@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import autobind from 'react-autobind'
+import productTypes from 'constants/product-types'
 import { globals, space, color } from 'constants/styles'
 
 import Input from 'components/Input'
@@ -9,10 +10,11 @@ import Checkbox from 'components/Checkbox'
 
 const Row = styled.div`
   ${globals}
+  min-width: 700px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  padding: ${space.sm}px ${space.md}px;
+  padding: ${space.sm}px;
   background: ${props => props.selected ? color.grayLighter : 'white'};
   min-height: 50px;
   &:hover {
@@ -67,39 +69,43 @@ export default class ProductRow extends React.Component {
    * Row click handler
    * Fire changed event to toggle selected as long as user didn't click on text input
    */
-  clickedRow (event) {
-    if (event.target && !event.target.getAttribute('isInput')) {
-      this.changed({ selected: !this.props.selected })
+  clickedRow (e) {
+    if (!e.target
+      || e.target instanceof HTMLInputElement 
+      || e.target instanceof HTMLSelectElement) {
+      return;
     }
+    this.changed({ selected: !this.props.selected })
+  }
+
+  changedInput (e) {
+    const target = e.target
+    const key = e.target.getAttribute('name')
+    this.changed({[key]: target.value})
   }
 
   render () {
-    // Unselected - Just render values
+    // Unselected Row - Just display values
     if (!this.props.selected) {
       return (
         <Row onClick={this.clickedRow}>
           <Column maxWidth={'40px'}>
             <Checkbox />
           </Column>
-
           <Column maxWidth={'58px'}>
             <ImageWrapper>
               <img src={this.props.imageUrl} />
             </ImageWrapper>
           </Column>
-
           <Column minWidth={'180px'}>
             {this.props.description || <NoDesc>No Description Yet</NoDesc>}
           </Column>
-
           <Column minWidth={'140px'} maxWidth={'180px'} align='right'>
             {this.props.type}
           </Column>
-
           <Column minWidth={'120px'} maxWidth={'120px'} align='right'>
             {this.props.price ? '$' + this.props.price : <NoDesc>{'$0.00'}</NoDesc>}
           </Column>
-
           <Column minWidth={'120px'} maxWidth={'120px'} align='right'>
             {this.props.inventory || <NoDesc>0</NoDesc>}
           </Column>
@@ -107,7 +113,7 @@ export default class ProductRow extends React.Component {
       )
     }
 
-    // Selected - Render inputs instead of plain values
+    // Selected Row - Render inputs instead of plain values
     return (
       <Row selected onClick={this.clickedRow}>
         <Column maxWidth={'40px'}>
@@ -122,25 +128,39 @@ export default class ProductRow extends React.Component {
 
         <Column minWidth={'180px'}>
           <Input
-            defaultValue={this.props.description} 
-            placeholder={'No Description Yet'}
+            defaultValue={this.props.description}
+            placeholder={'Description'}
+            name='description'
+            onChange={this.changedInput}
           />
         </Column>
 
         <Column minWidth={'140px'} maxWidth={'180px'} align='right'>
-          <select defaultValue={this.props.type}>
-            <option value={'physical'}>
-              Physical
-            </option>
+          <select 
+            defaultValue={this.props.type}
+            name='type'
+            onChange={this.changedInput}>
+            {productTypes.map(type => <option value={type}>{type}</option>)}
           </select>
         </Column>
 
         <Column minWidth={'120px'} maxWidth={'120px'} align='right'>
-          <Input defaultValue={this.props.price} symbol='$' />
+          <Input 
+            defaultValue={this.props.price || ''} 
+            placeholder='0.00' 
+            symbol='$' 
+            name='price'
+            onChange={this.changedInput}
+          />
         </Column>
 
         <Column minWidth={'120px'} maxWidth={'120px'} align='right'>
-          <Input defaultValue={this.props.inventory} />
+          <Input 
+            defaultValue={this.props.inventory || ''} 
+            placeholder='0' 
+            name='inventory'
+            onChange={this.changedInput}
+          />
         </Column>
       </Row>
     )

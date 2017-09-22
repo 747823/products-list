@@ -7,6 +7,7 @@ const StyledButton = styled.button`
   border-radius: 2px;
   padding: ${space.sm + 2}px ${space.md}px ${space.sm}px;
   display: inline-block;
+  vertical-align: middle;
   background: transparent;
   transition: background 0.2s, color 0.2s, border 0.2s;
   cursor: pointer;

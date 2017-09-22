@@ -4,11 +4,13 @@ import { globals, space, color } from 'constants/styles'
 
 const CheckboxWrapper = styled.div`
   display: inline-block;
-  padding: ${space.sm};
+  vertical-align: middle;
+  height: 18px;
 `
 
 const CheckboxBtn = styled.button`
   display: inline-block;
+  vertical-align: middle;
   line-height: 0;
   width: 18px;
   height: 18px;
@@ -40,13 +42,13 @@ const HiddenInput = styled.input`
 `
 
 const Checkbox = (props) =>
-  <span>
+  <CheckboxWrapper>
     <CheckboxBtn {...props}></CheckboxBtn>
     <HiddenInput
       type='checkbox'
       value={props.checked}
     />
-  </span>
+  </CheckboxWrapper>
 
 export default Checkbox
 

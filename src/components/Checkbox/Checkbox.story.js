@@ -21,7 +21,7 @@ class InteractiveCheckbox extends React.Component {
 
   render () {
     return (
-      <Checkbox 
+      <Checkbox
         checked={this.state.checked}
         onClick={this.toggleChecked}
       />

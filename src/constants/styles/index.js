@@ -17,7 +17,7 @@ const space = {
 }
 
 const fontSize = {
-  sm: '0.8em',
+  sm: '0.9em',
   md: '1em',
   lg: '1.2em',
   xl: '1.5em',
@@ -39,9 +39,9 @@ const globals = `
 `
 
 export {
-  color, 
-  space, 
-  fontSize, 
+  color,
+  space,
+  fontSize,
   breakPoints,
   globals
 }

@@ -1,23 +1,59 @@
-import React from 'react';
-import { storiesOf } from '@storybook/react';
-import { action } from '@storybook/addon-actions';
+import React from 'react'
+import styled from 'styled-components'
+import { storiesOf } from '@storybook/react'
+import { action } from '@storybook/addon-actions'
 
-import Button from './Button.js'
+import Btn from './Button.js'
+
+const Button = styled(Btn)`
+  margin-right: 10px;
+  &:last-child {
+    margin-right: 0;
+  }
+`
 
 storiesOf('Button', module)
   .add('Default', () =>
-    <Button>
+    <Btn>
       Default Button
-    </Button>
+    </Btn>
+  )
+  .add('Disabled', () =>
+    <Btn disabled>
+      Disabled Button
+    </Btn>
   )
   .add('Primary', () =>
-    <Button primary>
+    <Btn primary>
       Primary Button
-    </Button>
+    </Btn>
+  )
+  .add('Small', () =>
+    <Btn small>
+      Small Button (fits inline with inputs)
+    </Btn>
+  )
+  .add('Arrows', () =>
+    <div>
+      <Button arrowLeft small />
+      <Button arrowRight small />
+    </div>
+  )
+  .add('Arrows Disabled', () =>
+    <div>
+      <Button arrowLeft small disabled />
+      <Button arrowRight small disabled />
+    </div>
+  )
+  .add('Arrows Primary', () =>
+    <div>
+      <Button arrowLeft small primary />
+      <Button arrowRight small primary />
+    </div>
   )
   .add('With Click Handler', () =>
-    <Button primary onClick={action('Click handler fired')}>
+    <Btn primary onClick={action('Click handler fired')}>
       With Click Handler
-    </Button>
+    </Btn>
   )
 

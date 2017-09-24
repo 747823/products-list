@@ -29,11 +29,6 @@ const CheckboxBtn = styled.button`
     left: 2px;
     display: ${props => props.checked ? 'block' : 'none'};
   }
-  &:focus {
-    outline: none;
-    border: 1px solid ${props => props.checked ? color.blueDark : color.grayDark};
-    background: ${props => props.checked ? color.blueDark : 'transparent'};
-  }
 `
 
 const HiddenInput = styled.input`

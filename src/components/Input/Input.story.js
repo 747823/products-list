@@ -5,21 +5,33 @@ import styled from 'styled-components';
 
 import Input from './Input.js'
 
+const Wrapper = styled.div`
+  max-width: 220px;
+`
 const RightAlign = styled.div`
   text-align: right;
 `
 
 storiesOf('Input', module)
   .add('Empty', () =>
-    <Input />
+    <Wrapper>
+      <Input placeholder={'Type here...'} />
+    </Wrapper>
   )
-  .add('With Value', () =>
-    <Input defaultValue={'Banana'} />
+  .add('With Initial Value', () =>
+    <Wrapper>
+      <Input
+        placeholder={'Name of a Fruit'}
+        defaultValue={'Banana'}
+      />
+    </Wrapper>
   )
   .add('With Symbol', () =>
-    <RightAlign>
-      <Input symbol={'$'} defaultValue={'0.00'} />
-    </RightAlign>
+    <Wrapper>
+      <RightAlign>
+        <Input symbol={'$'} placeholder={'0.00'} />
+      </RightAlign>
+    </Wrapper>
   )
   // .add('Interactive', () =>
   //   <InteractiveCheckbox />

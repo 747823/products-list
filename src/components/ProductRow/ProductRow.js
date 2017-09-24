@@ -5,7 +5,7 @@ import productTypes from 'constants/product-types'
 import { globals, space, color } from 'constants/styles'
 
 import Input from 'components/Input'
-// import Select from 'components/Select'
+import Select from 'components/Select'
 import Checkbox from 'components/Checkbox'
 
 const Row = styled.div`
@@ -40,6 +40,7 @@ const ImageWrapper = styled.div`
   border: 1px solid ${color.grayLight};
   background: white;
   overflow: hidden;
+  position: relative;
   img {
     max-width: 100%;
     position: absolute;
@@ -50,6 +51,9 @@ const ImageWrapper = styled.div`
 const NoDesc = styled.span`
   font-style: italic;
   color: ${color.grayLight};
+`
+const Submit = styled.input`
+  display: none;
 `
 
 export default class ProductRow extends React.Component {
@@ -70,18 +74,16 @@ export default class ProductRow extends React.Component {
    * Fire changed event to toggle selected as long as user didn't click on text input
    */
   clickedRow (e) {
-    if (!e.target
-      || e.target instanceof HTMLInputElement 
-      || e.target instanceof HTMLSelectElement) {
-      return;
-    }
+    if (e.target instanceof HTMLInputElement || e.target instanceof HTMLSelectElement) return
     this.changed({ selected: !this.props.selected })
   }
 
   changedInput (e) {
     const target = e.target
     const key = e.target.getAttribute('name')
-    this.changed({[key]: target.value})
+    this.changed({
+      [key]: target.value
+    })
   }
 
   render () {
@@ -113,56 +115,59 @@ export default class ProductRow extends React.Component {
       )
     }
 
-    // Selected Row - Render inputs instead of plain values
+    // Selected Row - Render form with inputs instead of plain values
     return (
-      <Row selected onClick={this.clickedRow}>
-        <Column maxWidth={'40px'}>
-          <Checkbox checked />
-        </Column>
+      <form onSubmit={this.clickedRow}>
+        <Row selected onClick={this.clickedRow}>
+          <Column maxWidth={'40px'}>
+            <Checkbox checked />
+          </Column>
 
-        <Column maxWidth={'58px'}>
-          <ImageWrapper>
-            <img src={this.props.imageUrl} />
-          </ImageWrapper>
-        </Column>
+          <Column maxWidth={'58px'}>
+            <ImageWrapper>
+              <img src={this.props.imageUrl} />
+            </ImageWrapper>
+          </Column>
 
-        <Column minWidth={'180px'}>
-          <Input
-            defaultValue={this.props.description}
-            placeholder={'Description'}
-            name='description'
-            onChange={this.changedInput}
-          />
-        </Column>
+          <Column minWidth={'180px'}>
+            <Input
+              defaultValue={this.props.description}
+              placeholder={'Description'}
+              name='description'
+              onChange={this.changedInput}
+            />
+          </Column>
 
-        <Column minWidth={'140px'} maxWidth={'180px'} align='right'>
-          <select 
-            defaultValue={this.props.type}
-            name='type'
-            onChange={this.changedInput}>
-            {productTypes.map(type => <option value={type}>{type}</option>)}
-          </select>
-        </Column>
+          <Column minWidth={'140px'} maxWidth={'180px'} align='right'>
+            <Select
+              defaultValue={this.props.type}
+              name='type'
+              onChange={this.changedInput}>
+              {productTypes.map(type => <option value={type}>{type}</option>)}
+            </Select>
+          </Column>
 
-        <Column minWidth={'120px'} maxWidth={'120px'} align='right'>
-          <Input 
-            defaultValue={this.props.price || ''} 
-            placeholder='0.00' 
-            symbol='$' 
-            name='price'
-            onChange={this.changedInput}
-          />
-        </Column>
+          <Column minWidth={'120px'} maxWidth={'120px'} align='right'>
+            <Input
+              defaultValue={this.props.price || ''}
+              placeholder='0.00'
+              symbol='$'
+              name='price'
+              onChange={this.changedInput}
+            />
+          </Column>
 
-        <Column minWidth={'120px'} maxWidth={'120px'} align='right'>
-          <Input 
-            defaultValue={this.props.inventory || ''} 
-            placeholder='0' 
-            name='inventory'
-            onChange={this.changedInput}
-          />
-        </Column>
-      </Row>
+          <Column minWidth={'120px'} maxWidth={'120px'} align='right'>
+            <Input
+              defaultValue={this.props.inventory || ''}
+              placeholder='0'
+              name='inventory'
+              onChange={this.changedInput}
+            />
+          </Column>
+        </Row>
+        <Submit type="submit" value="Submit" />
+      </form>
     )
   }
 }

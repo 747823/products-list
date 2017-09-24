@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { globals, space, color } from 'constants/styles'
 
-const InputWrapper = styled.div`
+const SelectWrapper = styled.div`
   ${globals}
   display: inline-block;
   vertical-align: middle;
@@ -11,7 +11,8 @@ const InputWrapper = styled.div`
   width: 100%;
   position: relative;
 `
-const InputElement = styled.input`
+
+const SelectElement = styled.select`
   ${globals}
   border: 0;
   background: white;
@@ -20,7 +21,7 @@ const InputElement = styled.input`
   top: 0;
   width: 100%;
   height: 100%;
-  padding: 1px ${space.sm}px 0 ${props => props.symbol ? 30 : space.sm}px;
+  padding: 1px ${space.sm}px 0;
   border: 1px solid ${color.grayLight};
   box-shadow: inset 0 0 1px ${color.grayLight};
   text-align: inherit;
@@ -29,23 +30,13 @@ const InputElement = styled.input`
     color: ${color.grayDark}
   }
 `
-const SymbolElement = styled.div`
-  position: absolute;
-  top: 8px;
-  left: ${space.sm}px;
-  color: ${color.grayLight};
-`
 
-const Input = (props) =>
-  <InputWrapper className={props.className}>
-    <InputElement
-      type='text'
-      {...props}
-    />
-    {props.symbol &&
-      <SymbolElement>{props.symbol}</SymbolElement>
-    }
-  </InputWrapper>
+const Select = (props) =>
+  <SelectWrapper className={props.className}>
+    <SelectElement {...props}>
+      {props.children}
+    </SelectElement>
+  </SelectWrapper>
 
-export default Input
+export default Select
 

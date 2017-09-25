@@ -5,7 +5,8 @@ const color = {
   grayDark: '#282828',
   gray: '#7C8A98',
   grayLight: '#BABDBF',
-  grayLighter: '#F8F9FA'
+  grayLight2: '#E8E8EA',
+  grayLighter: '#F8F9FB'
 }
 
 const space = {

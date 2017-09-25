@@ -13,7 +13,7 @@ class InteractiveProductRow extends React.Component {
     this.state = Object.assign({
       isValid: true,
       selected: false,
-      imageUrl: '',
+      thumbnail: '',
       name: '',
       type: 'Physical',
       price: 0,
@@ -41,8 +41,8 @@ class InteractiveProductRow extends React.Component {
 storiesOf('Products Table/ProductRow', module)
   .add('Unselected', () =>
     <ProductRow
-      name='Rad Pants'
-      imageUrl='https://www.burnoutitaly.com/media/catalog/product/cache/2/small_image/295x/4d958f563004f3a33e053f5fc7cf6f98/r/e/xrevit-airwave-2-donna-0011.jpg.pagespeed.ic.yAKleTjS5Y.jpg'
+      name='Mythical Pants of Spellcasting'
+      thumbnail='https://frontend-trial-project.weebly.com/uploads/1/0/5/4/105462933/super-high-waisted-jeans-google-search-iozlcm0zk5j.png'
       type={'Physical'}
       price={49.99}
       inventory={150}
@@ -50,8 +50,8 @@ storiesOf('Products Table/ProductRow', module)
   )
   .add('Selected', () =>
     <ProductRow
-      name='Rad Pants'
-      imageUrl='https://www.burnoutitaly.com/media/catalog/product/cache/2/small_image/295x/4d958f563004f3a33e053f5fc7cf6f98/r/e/xrevit-airwave-2-donna-0011.jpg.pagespeed.ic.yAKleTjS5Y.jpg'
+      name='Mythical Pants of Spellcasting'
+      thumbnail='https://frontend-trial-project.weebly.com/uploads/1/0/5/4/105462933/super-high-waisted-jeans-google-search-iozlcm0zk5j.png'
       type={'Physical'}
       price={49.99}
       inventory={150}
@@ -61,7 +61,7 @@ storiesOf('Products Table/ProductRow', module)
   .add('Selected Invalid', () =>
     <ProductRow
       name=''
-      imageUrl='https://www.burnoutitaly.com/media/catalog/product/cache/2/small_image/295x/4d958f563004f3a33e053f5fc7cf6f98/r/e/xrevit-airwave-2-donna-0011.jpg.pagespeed.ic.yAKleTjS5Y.jpg'
+      thumbnail='https://frontend-trial-project.weebly.com/uploads/1/0/5/4/105462933/super-high-waisted-jeans-google-search-iozlcm0zk5j.png'
       type={'Physical'}
       price={49.99}
       inventory={150}
@@ -74,6 +74,6 @@ storiesOf('Products Table/ProductRow', module)
   )
   .add('Interactive', () =>
     <InteractiveProductRow
-      imageUrl='https://www.burnoutitaly.com/media/catalog/product/cache/2/small_image/295x/4d958f563004f3a33e053f5fc7cf6f98/r/e/xrevit-airwave-2-donna-0011.jpg.pagespeed.ic.yAKleTjS5Y.jpg'
+      thumbnail='https://frontend-trial-project.weebly.com/uploads/1/0/5/4/105462933/super-high-waisted-jeans-google-search-iozlcm0zk5j.png'
     />
   )

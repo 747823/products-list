@@ -34,10 +34,11 @@ const Column = styled.div`
   text-align: ${props => props.align || 'left'};
 `
 const ImageWrapper = styled.div`
-  width: 36px;
-  height: 36px;
+  width: 32px;
+  height: 32px;
   display: inline-block;
-  border: 1px solid ${color.grayLight};
+  border: 1px solid ${color.grayLight2};
+  border-radius: 1px;
   background: white;
   overflow: hidden;
   position: relative;
@@ -96,7 +97,7 @@ export default class ProductRow extends React.Component {
           </Column>
           <Column maxWidth={'58px'}>
             <ImageWrapper>
-              <img src={this.props.imageUrl} />
+              <img src={this.props.thumbnail} />
             </ImageWrapper>
           </Column>
           <Column minWidth={'180px'}>
@@ -125,7 +126,7 @@ export default class ProductRow extends React.Component {
 
           <Column maxWidth={'58px'}>
             <ImageWrapper>
-              <img src={this.props.imageUrl} />
+              <img src={this.props.thumbnail} />
             </ImageWrapper>
           </Column>
 

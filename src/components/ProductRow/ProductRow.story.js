@@ -77,4 +77,3 @@ storiesOf('Products Table/ProductRow', module)
       imageUrl='https://www.burnoutitaly.com/media/catalog/product/cache/2/small_image/295x/4d958f563004f3a33e053f5fc7cf6f98/r/e/xrevit-airwave-2-donna-0011.jpg.pagespeed.ic.yAKleTjS5Y.jpg'
     />
   )
-

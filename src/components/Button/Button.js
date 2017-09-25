@@ -45,7 +45,7 @@ const PrimaryButton = StyledButton.extend`
 
 const Button = (props) => {
   const Btn = props.primary ? PrimaryButton : DefaultButton
-  const BtnSize = props.small ? 32 : 40;
+  const BtnSize = props.small ? 32 : 40
 
   const ArrowButton = Btn.extend`
     width: ${BtnSize}px;
@@ -57,17 +57,21 @@ const Button = (props) => {
     }
   `
 
-  if (props.arrowLeft) return (
-    <ArrowButton {...props}>
-      <IconArrowLeft />
-    </ArrowButton>
-  )
+  if (props.arrowLeft) {
+    return (
+      <ArrowButton {...props}>
+        <IconArrowLeft />
+      </ArrowButton>
+    )
+  }
 
-  if (props.arrowRight) return (
-    <ArrowButton {...props}>
-      <IconArrowRight />
-    </ArrowButton>
-  )
+  if (props.arrowRight) {
+    return (
+      <ArrowButton {...props}>
+        <IconArrowRight />
+      </ArrowButton>
+    )
+  }
 
   return (
     <Btn {...props}>
@@ -77,4 +81,3 @@ const Button = (props) => {
 }
 
 export default Button
-

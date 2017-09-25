@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import autobind from 'react-autobind'
+// import autobind from 'react-autobind'
 import { globals, space, fontSize } from 'constants/styles'
 
 import Select from 'components/Select'
@@ -65,7 +65,7 @@ const PageControls = (props) =>
       <InlineSelect
         value={props.selectedPage}
         onChange={e => props.onChangePage && props.onChangePage(e.target.value)}>
-        {Array(props.pages).fill('').map((_,i) =>
+        {Array(props.pages).fill('').map((_, i) =>
           <option key={i} value={i + 1}>{i + 1}</option>
         )}
       </InlineSelect>

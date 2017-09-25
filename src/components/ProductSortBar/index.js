@@ -1,1 +1,1 @@
-export default from './ProductSortBar'
+export { default } from './ProductSortBar'

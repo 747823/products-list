@@ -66,7 +66,7 @@ export default class ProductRow extends React.Component {
    * Arbitrary change handler to pass state changes to parent
    */
   changed (state) {
-    this.props.onChange && this.props.onChange(state);
+    this.props.onChange && this.props.onChange(state)
   }
 
   /**
@@ -74,7 +74,7 @@ export default class ProductRow extends React.Component {
    * Fire changed event to toggle selected as long as user didn't click on text input
    */
   clickedRow (e) {
-    if (e.target instanceof HTMLInputElement || e.target instanceof HTMLSelectElement) return
+    if (e.target instanceof window.HTMLInputElement || e.target instanceof window.HTMLSelectElement) return
     this.changed({ selected: !this.props.selected })
   }
 
@@ -166,9 +166,8 @@ export default class ProductRow extends React.Component {
             />
           </Column>
         </Row>
-        <Submit type="submit" value="Submit" />
+        <Submit type='submit' value='Submit' />
       </form>
     )
   }
 }
-

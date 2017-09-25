@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { globals, space, color } from 'constants/styles'
+import { color } from 'constants/styles'
 
 const CheckboxWrapper = styled.div`
   display: inline-block;
@@ -38,7 +38,7 @@ const HiddenInput = styled.input`
 
 const Checkbox = (props) =>
   <CheckboxWrapper>
-    <CheckboxBtn {...props}></CheckboxBtn>
+    <CheckboxBtn {...props} />
     <HiddenInput
       type='checkbox'
       value={props.checked}
@@ -46,4 +46,3 @@ const Checkbox = (props) =>
   </CheckboxWrapper>
 
 export default Checkbox
-

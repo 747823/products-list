@@ -4,9 +4,6 @@ import autobind from 'react-autobind'
 import { globals, space, color, fontSize } from 'constants/styles'
 
 import FaCaretDown from 'react-icons/lib/fa/caret-down'
-
-import Input from 'components/Input'
-import Select from 'components/Select'
 import Checkbox from 'components/Checkbox'
 
 const Row = styled.div`
@@ -58,7 +55,6 @@ const Arrow = styled(FaCaretDown)`
   transition: transform 0.3s;
   transform: rotateZ(${props => props.up ? '-180deg' : '0deg'});
 `
-
 
 export default class ProductRow extends React.Component {
   constructor (props) {
@@ -116,4 +112,3 @@ export default class ProductRow extends React.Component {
     )
   }
 }
-

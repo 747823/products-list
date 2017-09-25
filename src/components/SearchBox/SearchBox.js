@@ -1,8 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
-import { globals, space, color } from 'constants/styles'
+import { space, color } from 'constants/styles'
 
- //Using font-awesome icon for MVP, in real project replace this later with custom icon component
+// Using font-awesome icon for MVP, in real project replace this later with custom icon component
 import FaSearchIcon from 'react-icons/lib/fa/search'
 import Input from 'components/Input'
 

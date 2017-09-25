@@ -39,4 +39,3 @@ const Select = (props) =>
   </SelectWrapper>
 
 export default Select
-

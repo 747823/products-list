@@ -44,7 +44,7 @@ class InteractivePageControls extends React.Component {
     changedPageAction(1)
   }
 
-  render() {
+  render () {
     return (
       <PageControls
         onChangeItemsPerPage={this.changedItemsPerPage}

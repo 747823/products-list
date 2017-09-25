@@ -48,4 +48,3 @@ const Input = (props) =>
   </InputWrapper>
 
 export default Input
-

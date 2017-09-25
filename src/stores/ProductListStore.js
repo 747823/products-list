@@ -72,7 +72,6 @@ actions.on('addProduct', () => {
  * Listen for filter changes (e.g. typing in the search bar above the products table)
  */
 actions.on('changeFilters', data => {
-  console.log(data)
   const filters = data
   const products = ProductListStore.state.products
   let displayProducts

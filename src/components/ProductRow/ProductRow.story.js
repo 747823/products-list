@@ -14,7 +14,7 @@ class InteractiveProductRow extends React.Component {
       isValid: true,
       selected: false,
       imageUrl: '',
-      description: '',
+      name: '',
       type: 'Physical',
       price: 0,
       inventory: 0
@@ -41,7 +41,7 @@ class InteractiveProductRow extends React.Component {
 storiesOf('Products Table/ProductRow', module)
   .add('Unselected', () =>
     <ProductRow
-      description='Rad Pants'
+      name='Rad Pants'
       imageUrl='https://www.burnoutitaly.com/media/catalog/product/cache/2/small_image/295x/4d958f563004f3a33e053f5fc7cf6f98/r/e/xrevit-airwave-2-donna-0011.jpg.pagespeed.ic.yAKleTjS5Y.jpg'
       type={'Physical'}
       price={49.99}
@@ -50,7 +50,7 @@ storiesOf('Products Table/ProductRow', module)
   )
   .add('Selected', () =>
     <ProductRow
-      description='Rad Pants'
+      name='Rad Pants'
       imageUrl='https://www.burnoutitaly.com/media/catalog/product/cache/2/small_image/295x/4d958f563004f3a33e053f5fc7cf6f98/r/e/xrevit-airwave-2-donna-0011.jpg.pagespeed.ic.yAKleTjS5Y.jpg'
       type={'Physical'}
       price={49.99}
@@ -60,14 +60,14 @@ storiesOf('Products Table/ProductRow', module)
   )
   .add('Selected Invalid', () =>
     <ProductRow
-      description=''
+      name=''
       imageUrl='https://www.burnoutitaly.com/media/catalog/product/cache/2/small_image/295x/4d958f563004f3a33e053f5fc7cf6f98/r/e/xrevit-airwave-2-donna-0011.jpg.pagespeed.ic.yAKleTjS5Y.jpg'
       type={'Physical'}
       price={49.99}
       inventory={150}
       isValid={false}
       validationErrors={[
-        'Description can\'t be empty'
+        'Name can\'t be empty'
       ]}
       selected
     />

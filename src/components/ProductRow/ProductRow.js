@@ -48,7 +48,7 @@ const ImageWrapper = styled.div`
     transform: translateY(-50%);
   }
 `
-const NoDesc = styled.span`
+const MissingValue = styled.span`
   font-style: italic;
   color: ${color.grayLight};
 `
@@ -100,16 +100,16 @@ export default class ProductRow extends React.Component {
             </ImageWrapper>
           </Column>
           <Column minWidth={'180px'}>
-            {this.props.description || <NoDesc>No Description Yet</NoDesc>}
+            {this.props.name || <MissingValue>No Name Yet</MissingValue>}
           </Column>
           <Column minWidth={'140px'} maxWidth={'180px'} align='right'>
             {this.props.type}
           </Column>
           <Column minWidth={'120px'} maxWidth={'120px'} align='right'>
-            {this.props.price ? '$' + this.props.price : <NoDesc>{'$0.00'}</NoDesc>}
+            {this.props.price ? '$' + this.props.price : <MissingValue>{'$0.00'}</MissingValue>}
           </Column>
           <Column minWidth={'120px'} maxWidth={'120px'} align='right'>
-            {this.props.inventory || <NoDesc>0</NoDesc>}
+            {this.props.inventory || <MissingValue>0</MissingValue>}
           </Column>
         </Row>
       )
@@ -131,9 +131,9 @@ export default class ProductRow extends React.Component {
 
           <Column minWidth={'180px'}>
             <Input
-              defaultValue={this.props.description}
-              placeholder={'Description'}
-              name='description'
+              defaultValue={this.props.name}
+              placeholder={'Enter product name...'}
+              name='name'
               onChange={this.changedInput}
             />
           </Column>

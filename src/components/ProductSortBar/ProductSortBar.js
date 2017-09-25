@@ -82,9 +82,9 @@ export default class ProductRow extends React.Component {
         </Column>
 
         <Column allowHover minWidth={'238px'}>
-          <SortOption name='description' onClick={() => this.changeSort('description')}>
+          <SortOption name='name' onClick={() => this.changeSort('name')}>
             Name
-            <Arrow up={this.props.description === 'up'} />
+            <Arrow up={this.props.name === 'up'} />
           </SortOption>
         </Column>
 

@@ -13,7 +13,7 @@ class InteractiveSortBar extends React.Component {
     this.state = {
       selected: false,
       sortOptions: {
-        description: 'down',
+        name: 'down',
         type: 'down',
         price: 'down',
         inventory: 'down'

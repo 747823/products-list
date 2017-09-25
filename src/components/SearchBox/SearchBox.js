@@ -30,9 +30,14 @@ const SearchInput = styled(Input)`
   border-radius: 2px;
 `
 
+const inputChanged = (props, event) => {
+  const value = event.target.value
+  props.onChange && props.onChange(value, event)
+}
+
 const SearchBox = (props) =>
   <Wrapper>
-    <SearchInput {...props} />
+    <SearchInput {...props} onChange={(event) => inputChanged(props, event)} />
     <IconWrapper>
       <FaSearchIcon size={'1.25em'} />
     </IconWrapper>

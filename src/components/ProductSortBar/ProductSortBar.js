@@ -12,8 +12,8 @@ const Row = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  padding: 0 ${space.sm}px;
   min-height: 50px;
+  padding: 0 ${space.sm}px;
 `
 const Column = styled.div`
   ${globals}
@@ -73,7 +73,7 @@ export default class ProductRow extends React.Component {
 
   render () {
     return (
-      <Row>
+      <Row className={this.props.className}>
         <Column allowHover maxWidth={'40px'}>
           {this.props.selected
             ? <Checkbox checked onClick={() => this.selected(false)} />

@@ -18,6 +18,7 @@ const StyledButton = styled.button`
   background: transparent;
   transition: background 0.2s, color 0.2s, border 0.2s;
   cursor: ${props => props.disabled ? 'default' : 'pointer'};
+  white-space: nowrap;
 `
 
 const DefaultButton = StyledButton.extend`

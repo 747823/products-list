@@ -91,7 +91,7 @@ export default class ProductRow extends React.Component {
     // Unselected Row - Just display values
     if (!this.props.selected) {
       return (
-        <Row onClick={this.clickedRow}>
+        <Row onClick={this.clickedRow} className={this.props.className}>
           <Column maxWidth={'40px'}>
             <Checkbox />
           </Column>
@@ -119,7 +119,7 @@ export default class ProductRow extends React.Component {
     // Selected Row - Render form with inputs instead of plain values
     return (
       <form onSubmit={this.clickedRow}>
-        <Row selected onClick={this.clickedRow}>
+        <Row selected onClick={this.clickedRow} className={this.props.className}>
           <Column maxWidth={'40px'}>
             <Checkbox checked />
           </Column>

@@ -23,7 +23,7 @@ const Row = styled.div`
 `
 const ItemsPerPage = styled.div`
   ${globals};
-  min-width: 100px;
+  min-width: 105px;
   margin-right: ${space.sm}px;
   font-size: ${fontSize.sm};
 `
@@ -40,6 +40,11 @@ const clickedNextPage = (props) => {
   }
 }
 
+const changedItemsPerPage = (props, event) => {
+  const value = parseInt(event.target.value)
+  props.onChangeItemsPerPage && props.onChangeItemsPerPage(value)
+}
+
 const PageControls = (props) =>
   <Row>
     {props.itemsPerPageOptions &&
@@ -47,9 +52,7 @@ const PageControls = (props) =>
         <ItemsPerPage>Items per page:</ItemsPerPage>
         <InlineSelect
           value={props.itemsPerPage}
-          onChange={
-            e => props.onChangeItemsPerPage && props.onChangeItemsPerPage(e.target.value)
-          }>
+          onChange={event => changedItemsPerPage(props, event)}>
           {props.itemsPerPageOptions.map((n, i) => <option value={n} key={i}>{n}</option>)}
         </InlineSelect>
       </Row>

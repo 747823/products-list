@@ -160,5 +160,4 @@ actions.on('selectAllProducts', value => {
   }
 })
 
-
 export default ProductListStore

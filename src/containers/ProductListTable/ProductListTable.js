@@ -170,7 +170,7 @@ export default class ProductListTable extends React.Component {
       <div>
         <Row>
           <SearchBoxWrapper>
-            <SearchBox 
+            <SearchBox
               onChange={this.changedSearch}
               placeholder={'Search...'}
             />

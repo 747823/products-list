@@ -67,7 +67,10 @@ export default class ProductRow extends React.Component {
    * Arbitrary change handler to pass state changes to parent
    */
   changed (state) {
-    this.props.onChange && this.props.onChange(state)
+    this.props.onChange && this.props.onChange({
+      id: this.props.id || null,
+      ...state
+    })
   }
 
   /**
@@ -144,7 +147,7 @@ export default class ProductRow extends React.Component {
               defaultValue={this.props.type}
               name='type'
               onChange={this.changedInput}>
-              {productTypes.map(type => <option value={type}>{type}</option>)}
+              {productTypes.map(type => <option key={type} value={type}>{type}</option>)}
             </Select>
           </Column>
 

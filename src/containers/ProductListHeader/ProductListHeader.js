@@ -2,6 +2,8 @@ import React from 'react'
 import styled from 'styled-components'
 import { globals, space, fontSize, color } from 'constants/styles'
 
+import actions from 'actions/ProductListActions'
+
 import Button from 'components/Button'
 
 const Btn = styled(Button)`
@@ -36,7 +38,7 @@ const Heading = styled.h1`
 `
 
 const addProduct = () => {
-  // Fire add product action (adds a product without persisting it)
+  actions.call('addProduct')
 }
 
 const ProductListHeader = () =>

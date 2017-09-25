@@ -1,1 +1,1 @@
-export default from './ProductListHeader'
+export { default } from './ProductListHeader'

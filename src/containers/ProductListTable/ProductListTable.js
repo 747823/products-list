@@ -36,25 +36,9 @@ const NoProducts = styled.div`
   color: ${color.grayLight};
   text-align: center;
   width: 100%;
-  padding: ${space.lg}px 0;
+  padding: ${space.md}px 0 0;
+  height: 55px;
 `
-
-/**
- * Computes products to display on a page
- *
- * TODO: Export this function so it can be unit tested
- * 
- * @param selectedPage {number}
- * @param itemsPerPage {number}
- * @param products {Array} - array of all display products
- * 
- * @return {Array}
- */
-const computePageItems = ({selectedPage, itemsPerPage, products}) => {
-  const startItem = itemsPerPage * (selectedPage - 1)
-  const endItem = startItem + itemsPerPage
-  return products.slice(startItem, endItem)
-}
 
 export default class ProductListTable extends React.Component {
   constructor () {
@@ -62,6 +46,8 @@ export default class ProductListTable extends React.Component {
 
     const products = store.state.displayProducts
     this.state = {
+      allProductsSelected: false,
+
       /**
        * Initially true, changes to false when getProducts action has fired
        * Does nothing currently, but could be useful in a real app
@@ -110,6 +96,10 @@ export default class ProductListTable extends React.Component {
     if (newState.displayProducts) {
       this.displayProductsChanged(newState.displayProducts)
     }
+
+    if (newState.allProductsSelected !== undefined) {
+      this.setState({ allProductsSelected: newState.allProductsSelected })
+    }
   }
 
   /**
@@ -117,26 +107,31 @@ export default class ProductListTable extends React.Component {
    * @param  {Array}
    */
   displayProductsChanged (products) {
+    // Change selected page to 1 if length of display products array changed
+    const selectedPage = (products.length === this.state.displayProducts.length)
+      ? this.state.selectedPage
+      : 1
+
     this.setState({
       loading: false,
       displayProducts: products,
-      currentPageProducts: computePageItems({
-        selectedPage: 1,
+      currentPageProducts: this.computePageItems({
+        selectedPage,
         itemsPerPage: this.state.itemsPerPage,
         products
       }),
-      selectedPage: 1
+      selectedPage
     })
   }
 
-  changedProductRow (index, data) {
-    // TODO: Fire changedProduct action
-    console.log('changed product row')
+  changedProductRow (data) {
+    actions.call('changeProduct', data)
   }
 
   changedSearch (value) {
-    console.log(value)
-    // TODO: Fire changeFilters action
+    // TODO: debounce the action call to prevent slow typing if there are thousands of products
+    // And ideally make filtering asynchronous
+    actions.call('changeFilters', { name: value })
   }
 
   changedItemsPerPage (itemsPerPage) {
@@ -149,13 +144,19 @@ export default class ProductListTable extends React.Component {
 
   changedPage (selectedPage) {
     this.setState({
-      currentPageProducts: computePageItems({
+      currentPageProducts: this.computePageItems({
         itemsPerPage: this.state.itemsPerPage,
         products: this.state.displayProducts,
         selectedPage
       }),
       selectedPage
     })
+  }
+
+  computePageItems ({ itemsPerPage, selectedPage, products }) {
+    const startItem = itemsPerPage * (selectedPage - 1)
+    const endItem = startItem + itemsPerPage
+    return products.slice(startItem, endItem)
   }
 
   render () {
@@ -169,11 +170,17 @@ export default class ProductListTable extends React.Component {
       <div>
         <Row>
           <SearchBoxWrapper>
-            <SearchBox onChange={this.changedSearch} placeholder={'Search...'} />
+            <SearchBox 
+              onChange={this.changedSearch}
+              placeholder={'Search...'}
+            />
           </SearchBoxWrapper>
         </Row>
         <Row>
-          <StyledSortBar />
+          <StyledSortBar
+            selected={this.state.allProductsSelected}
+            onSelected={(value) => { actions.call('selectAllProducts', value) }}
+          />
           <TableWrapper>
             {this.state.displayProducts.length === 0 && !this.state.loading &&
               <NoProducts>No products to display</NoProducts>
@@ -182,6 +189,7 @@ export default class ProductListTable extends React.Component {
               this.state.currentPageProducts.map((item, i) =>
                 <StyledProductRow
                   key={i}
+                  onChange={this.changedProductRow}
                   {...item}
                 />
               )

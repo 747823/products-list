@@ -3,8 +3,4 @@ import ReactDOM from 'react-dom'
 
 import ProductList from 'containers/ProductList'
 
-const App = () => {
-  return <ProductList />
-}
-
-ReactDOM.render(<App />, document.getElementById('main'))
+ReactDOM.render(<ProductList />, document.getElementById('main'))

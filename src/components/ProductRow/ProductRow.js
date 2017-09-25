@@ -91,6 +91,14 @@ export default class ProductRow extends React.Component {
   }
 
   render () {
+    // Make sure price always displays with 2 decimal places
+    let displayPrice = (Math.floor(this.props.price * 100) / 100).toString()
+    if (displayPrice.indexOf('.') === -1) {
+      displayPrice += '.00'
+    } else if (displayPrice.match(/\.[0-9]{1}$/)) {
+      displayPrice += '0'
+    }
+
     // Unselected Row - Just display values
     if (!this.props.selected) {
       return (
@@ -110,7 +118,7 @@ export default class ProductRow extends React.Component {
             {this.props.type}
           </Column>
           <Column minWidth={'120px'} maxWidth={'120px'} align='right'>
-            {this.props.price ? '$' + this.props.price : <MissingValue>{'$0.00'}</MissingValue>}
+            {this.props.price ? '$' + displayPrice : <MissingValue>{'$0.00'}</MissingValue>}
           </Column>
           <Column minWidth={'120px'} maxWidth={'120px'} align='right'>
             {this.props.inventory || <MissingValue>0</MissingValue>}
